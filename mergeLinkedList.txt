@@ -1,0 +1,84 @@
+Write a function that takes in the heads of two Singly Linked Lists that are in sorted order, 
+respectively (assume that the lists have at least 1 node; in other words, the heads will 
+never be null values). The function should merge the lists and return the head of the merged 
+list; the merged list should be in sorted order. Note that every node in the Singly Linked 
+Lists has a "value" property storing its value as well as a "next" property pointing to the 
+next node in the list or None (null) if it is the tail of the list.
+
+// This is an input class. Do not edit.
+class LinkedList {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+function mergeLinkedLists(l1, l2) {
+ let newList = new LinkedList(-1)
+ 
+ let head = newList
+ while(l1 !== null && l2 !== null){
+  if(l1.value < l2.value){
+      head.next = l1
+    l1 = l1.next
+  }else {
+      head.next = l2
+    l2 = l2.next
+  }
+  head = head.next
+ }
+ 
+ if(l1 !== null){
+  head.next = l1
+  head = head.next
+  l1 = l1.next
+ }
+ 
+ if(l2 !== null){
+  head.next = l2
+  head = head.next
+  l2 = l2.next
+ }
+ 
+ 
+ return newList.next
+}
+
+
+
+
+
+Time -> O(N + M)
+Space -> O(N + M)
+
+Main(l1, l2)
+
+let newList = new LinkedList(-1)
+
+let head = newList
+
+while(l1 !== null && l2 !== null){
+  
+  if(l1.value < l2.value){
+    head.next = new LinkedList(l1.value)
+    l1 = l1.next
+  }else {
+    head.next = new LinkedList(l2.value)
+    l2 = l2.next
+  }
+  head = head.next
+}
+
+if(l1 !== null){
+  head.next = new LinkedList(l1.value)
+  head = head.next
+  l1 = l1.next
+}
+
+if(l2 !== null){
+  head.next = new LinkedList(l2.value)
+  head = head.next
+  l2 = l2.next
+}
+
+return newList.next
